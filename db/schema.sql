@@ -7,4 +7,3 @@ CREATE TABLE `burgers_db`.`burgers` (
   `burger_name` VARCHAR(45) NULL,
   `devoured` TINYINT NULL,
   PRIMARY KEY (`id`));
-
