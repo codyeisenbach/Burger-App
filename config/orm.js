@@ -41,16 +41,16 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-  selectAll: function(tableInput, cb) {
+  selectAll: function (tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
       cb(result);
     });
   },
-  insertOne: function(table, cols, vals, cb) {
+  insertOne: function (table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -62,7 +62,7 @@ var orm = {
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, vals, function (err, result) {
       if (err) {
         throw err;
       }
@@ -70,38 +70,30 @@ var orm = {
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
-  updateOne: function(table, objColVals, condition, cb) {
-    var queryString = "UPDATE " + table;
 
-    queryString += " SET ";
-    queryString += objToSql(objColVals);
-    queryString += " WHERE ";
-    queryString += condition;
+// Function that updates a single table entry
+updateOne: function(table, objColVals, condition, cb) {
+  // Construct the query string that updates a single entry in the target table
+  var queryString = "UPDATE " + table;
 
-    console.log(queryString);
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
+  queryString += " SET ";
+  queryString += objToSql(objColVals);
+  queryString += " WHERE ";
+  queryString += condition;
 
-      cb(result);
-    });
-  },
-  delete: function(table, condition, cb) {
-    var queryString = "DELETE FROM " + table;
-    queryString += " WHERE ";
-    queryString += condition;
+  console.log(queryString);
 
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
+  // Perform the database query
+  connection.query(queryString, function(err, result) {
+    if (err) {
+      throw err;
+    }
 
-      cb(result);
+    // Return results in callback
+    cb(result);
     });
   }
 };
 
-// Export the orm object for the model (cat.js).
+
 module.exports = orm;

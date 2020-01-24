@@ -25,11 +25,9 @@ router.post("/burgers", function(req, res) {
   });
 });
 
-router.put("/burgers/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
+router.put('/burgers/:id', function(req, res) {
+  var condition = 'id = ' + req.params.id;
+  
   burger.updateOne({
     devoured: true
   }, condition, function(data) {
