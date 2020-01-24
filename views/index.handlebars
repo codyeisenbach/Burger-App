@@ -7,23 +7,23 @@
         {{#each burgers}}
         {{#unless this.devoured}}
         <div class="burgerName">
-           <h5 class="">{{this.burger_name}}</h5>
+          <h5 class="">{{this.burger_name}}</h5>
         </div>
-        
+
         <div class="col-4 buttonCol">
-            
+
           <form method="POST" action="/burgers/{{this.id}}?_method=PUT" method="POST">
             <button type="submit" class='burgerAvailable'> DEVOUR </button>
 
           </form>
         </div>
-       
+
         <div class="newLine"></div>
         {{/unless}}
         {{/each}}
       </div>
 
-      <div class="col s6">
+      <div class="col eatenCol">
         {{#each burgers}}
         {{#if this.devoured}}
         <div class='burgerEaten'>

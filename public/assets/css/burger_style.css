@@ -47,6 +47,17 @@ h1 {
     background-color: #81ff94;
 }
 
+.eatenCol {
+display: flex;
+justify-content: flex-end;
+align-self: vertical;
+width: 50%;
+margin-right: 0%;
+margin-left: 80%;
+
+
+}
+
 .burgerEaten {
     font-family: 'Rubik, swap';
     font-weight: normal;
